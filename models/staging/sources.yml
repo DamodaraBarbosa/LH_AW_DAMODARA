@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: adventure_works # this is the source_name
+    database: adventureworks-413718
+    schema: sap_adw
+    tables:
+      - name: customer # this is the table_name
+      - name: product
+  
