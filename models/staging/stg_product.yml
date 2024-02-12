@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_product
+    description: This staging contains info about Adventure Works' products
+    columns:
+      - name: productid
+        description: Unique ID for this table
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: The name of each product
+        tests:
+          - not_null
+      - name: color
+        description: Color of the product, some records are null
+      - name: listprice
+        description: Listed price of each product
+      - name: sellstartdate
+        description: The date when the product started to be sold in Adventure Works

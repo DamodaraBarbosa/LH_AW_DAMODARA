@@ -2,7 +2,7 @@ version: 2
 
 models:
   - name: stg_customer
-    description: This staging contais info about Adventure Works' customers
+    description: This staging contaims info about Adventure Works' customers
     columns:
       - name: customerid
         description: Unique ID for this table

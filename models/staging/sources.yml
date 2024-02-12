@@ -7,4 +7,6 @@ sources:
     tables:
       - name: customer # this is the table_name
       - name: product
+      - name: creditcard
+      - name: countryregion
   
