@@ -6,4 +6,5 @@ sources:
     schema: sap_adw
     tables:
       - name: customer # this is the table_name
+      - name: product
   

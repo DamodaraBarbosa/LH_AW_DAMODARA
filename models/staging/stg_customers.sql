@@ -7,4 +7,5 @@ with
             , cast(territoryid as int) as territoryid
         from {{ source('adventure_works', 'customer') }}
     )
-select * from customer
+select * 
+from customer
