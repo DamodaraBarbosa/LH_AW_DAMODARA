@@ -9,4 +9,4 @@ sources:
       - name: product
       - name: creditcard
       - name: countryregion
-  
+      - name: stateprovince
