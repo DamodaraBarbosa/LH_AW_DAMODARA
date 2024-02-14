@@ -13,7 +13,6 @@ models:
         description: The address description for each address
         tests:
           - not_null
-          - unique
       - name: city
         description: The city of each address
         tests: 

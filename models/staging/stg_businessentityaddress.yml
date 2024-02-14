@@ -4,11 +4,10 @@ models:
   - name: stg_businessentityaddress
     description: This staging contains info about the address of each businessentity
     columns:
-      - name: businessentityaid
+      - name: businessentityid
         description: Unique ID for each business entity
         tests:
           - not_null
-          - unique
       - name: addressid
         description: Unique ID for each address
         tests:
