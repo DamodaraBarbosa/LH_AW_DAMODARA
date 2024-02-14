@@ -10,3 +10,6 @@ sources:
       - name: creditcard
       - name: countryregion
       - name: stateprovince
+      - name: address
+      - name: businessentityaddress
+      - name: businessentity
