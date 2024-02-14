@@ -20,4 +20,5 @@ models:
           - not_null
       - name: stateprovinceid
         description: The ID for stateprovince 
+        tests:
         - not_null
