@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: stg_store
+    description: This staging contains information about the stores that are Adventure Works customers
+    columns:
+      - name: businessentityid
+        description: Unique ID for each businessentity
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: The name of store
+        tests:
+          - not_null
+          - unique
+     

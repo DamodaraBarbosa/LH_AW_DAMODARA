@@ -13,3 +13,4 @@ sources:
       - name: address
       - name: businessentityaddress
       - name: businessentity
+      - name: store
