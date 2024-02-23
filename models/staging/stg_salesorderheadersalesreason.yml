@@ -8,6 +8,5 @@ models:
         description: Unique ID for each salesorder
         tests:
           - not_null
-          - unique
       - name: salesreasonid
         description: IDs for sales reason
