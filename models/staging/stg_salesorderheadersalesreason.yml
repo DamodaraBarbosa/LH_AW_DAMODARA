@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: stg_salesorderheadersalesreason
+    description: Transactional table with sales order IDs
+    columns:
+      - name: salesorderid
+        description: Unique ID for each salesorder
+        tests:
+          - not_null
+          - unique
+      - name: salesreasonid
+        description: IDs for sales reason
