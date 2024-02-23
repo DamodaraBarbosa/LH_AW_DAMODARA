@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_stateprovince
+    description: This staging contains info about state provinces. 
+    columns:
+      - name: stateprovinceid
+        description: Unique ID for this table
+        tests:
+          - not_null
+          - unique
+      - name: stateprovincecode
+        description: Code for each state province
+        tests:
+          - not_null
+          - unique
+      - name: countryregioncode
+        description: Country region code for each country
+      - name: name
+        description: Name of each state province
+        tests:
+          - unique
+      - name: territoryid
+        description: The ID for each territory
+        tests:
+          - not_null
+          
