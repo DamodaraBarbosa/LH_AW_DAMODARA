@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_salesorderheader
+    description: This staging contains info about the each sales order
+    columns:
+      - name: salesorderid
+        description: Order ID
+        tests:
+          - not_null
+          - unique
+      - name: orderdate
+        description: The date when the order occurred
+      - name: duedate
+        description: Date the order is due to the customer
+      - name: shipdate
+        description: Date the order was shipped to the customer
+      - name: status
+        description: The status of order
+        tests:
+          - not_null
+      - name: onlineorderflag
+        description: True if the sale is placed online by customer. False if it ain't
+      - name: customerid
+        description: The ID of each customer
+        tests:
+          - not_null
+      - name: territoryid
+        description: Territory where the sale was made
+        tests:
+          - not_null
+      - name: billtoaddressid
+        description: Customer billing address
+      - name: shiptoaddressid
+        description: Customer shipping address
+      - name: shipmethodid
+        description: Shipping method ID
+      - name: creditcardid
+        description: Credit card ID numer
+      - name: subtotal
+        description: Sales subtotal
+        tests:
+          - not_null
+      - name: taxamt
+        description: Tax amount
+      - name: freight
+        description: Shipping amount cost
+        tests:
+          - not_null
+      - name: totaldue
+        description: Total due from customer. Subtotal + freight + tax amount
+        tests:
+          - not_null

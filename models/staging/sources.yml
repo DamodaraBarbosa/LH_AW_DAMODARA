@@ -17,3 +17,4 @@ sources:
       - name: salesreason
       - name: salesorderheadersalesreason
       - name: salesorderdetail
+      - name: salesorderheader
