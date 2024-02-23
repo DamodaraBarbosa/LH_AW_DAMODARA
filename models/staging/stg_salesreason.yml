@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_salesreason
+    description: This staging contains information about the reasons for Adventure Works' sales
+    columns:
+      - name: salesreasonid
+        description: Unique ID for each sales reason
+        tests:
+          - not_null
+          - unique
+      - name: name
+        description: The name for each sale reason
+        tests:
+          - not_null
+          - unique
+      - name: reasontype
+        description: Rating type for each reason to purchase

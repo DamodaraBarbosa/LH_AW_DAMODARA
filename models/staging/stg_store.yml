@@ -13,5 +13,4 @@ models:
         description: The name of store
         tests:
           - not_null
-          - unique
      
