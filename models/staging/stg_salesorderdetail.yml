@@ -8,7 +8,6 @@ models:
         description: Order ID
         tests:
           - not_null
-          - unique
       - name: salesorderdetailid
         description: The ID for sales order detail
         tests:
