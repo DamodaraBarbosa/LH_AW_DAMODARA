@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_salesorderdetail
+    description: This staging contains info about the details of each order
+    columns:
+      - name: salesorderid
+        description: Order ID
+        tests:
+          - not_null
+      - name: salesorderdetailid
+        description: The ID for sales order detail
+        tests:
+          - not_null
+          - unique
+      - name: orderqty
+        description: The quantity of products ordered
+        tests:
+          - not_null
+      - name: productid
+        description: The ID for the product ordered
+        tests:
+        - not_null
+      - name: unitprice
+        description: Unit price of the ordered product
+        tests:
+          - not_null
+      - name: unitpricediscount
+        description: Discount amount
+        tests:
+          - not_null
