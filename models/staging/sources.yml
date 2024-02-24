@@ -18,3 +18,4 @@ sources:
       - name: salesorderheadersalesreason
       - name: salesorderdetail
       - name: salesorderheader
+      - name: person
