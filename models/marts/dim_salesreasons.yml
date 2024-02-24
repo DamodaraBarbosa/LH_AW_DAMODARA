@@ -13,11 +13,6 @@ models:
         tests:
           - unique 
           - not_null 
-      - name: salesreasonid
-        description: ID for sales reason
-        tests:
-          - not_null
-          - unique
       - name: name
         description: Name of the reason of sale
       - name: reasontype
