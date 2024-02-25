@@ -38,6 +38,7 @@ with
             , stg_countryregion.name as country_name
             , stg_stateprovince.name as province_name
             , stg_address.city as city_name
+            , stg_address.addressid
             , stg_address.addressline1 as address
         from stg_businessentityaddress
         left join stg_address on stg_address.addressid = stg_businessentityaddress.addressid
