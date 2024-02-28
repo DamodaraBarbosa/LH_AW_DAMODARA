@@ -3,7 +3,7 @@ version: 2
 models:
   - name: fact_orders
     columns:
-      - name: salesorder_sk
+      - name: order_sk
         description: Surrogate key for each order
         tests:
           - not_null
@@ -11,7 +11,6 @@ models:
       - name: salesorderid
         description: ID for sale order
         tests:
-          - unique 
           - not_null 
       - name: orderdate
         description: The date the order was placed
@@ -34,7 +33,6 @@ models:
       - name: customer_fk
         description: Foreign key for customers
         tests: 
-          - unique
           - not_null
       - name: customer
         description: ID of customer
@@ -48,7 +46,6 @@ models:
         description: Foreign key for locations
         tests:
           - not_null
-          - unique
       - name: shiptoaddressid
         description: Customer shipping address
         tests:
@@ -56,8 +53,26 @@ models:
       - name: creditcard_fk
         description: Foreign key for creditcard
         tests:
-          - unique
           - not_null
+      - name: creditcardid
+        description: The ID for each credit card
+        tests:
+          - not_null
+      - name: salesorderdetailid
+        description: The ID for each sales order detail
+        tests:
+          - not_null
+      - name: orderqty
+        description: The amount of specific product ordered
+        tests:
+          - not_null
+      - name: productid
+        description: The ID for each product ordered
+        tests:
+          - not_null
+      - name: amountwithouttaxfreight
+        description: The amount of money for each salesorderdetailid without taxes and freight
+
           
 
           

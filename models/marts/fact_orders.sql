@@ -27,6 +27,15 @@ with
             , totaldue
         from {{ ref('stg_salesorderheader') }}
     )
+    , stg_salesorderdetail as (
+        select
+            salesorderid
+            , salesorderdetailid
+            , orderqty
+            , productid
+            , round((((1 - unitpricediscount) * unitprice) * orderqty), 2) as amountwithouttaxfreight
+        from {{ ref('stg_salesorderdetail') }}
+    )
     , dim_creditcards as (
         select
             creditcard_sk
@@ -53,7 +62,7 @@ with
     )
     , sales_order_transformed as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.salesorderid', 'orderdate']) }} as salesorder_sk
+            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.salesorderid', 'stg_salesorderdetail.salesorderdetailid']) }} as order_sk
             , stg_salesorderheader.salesorderid
             , stg_salesorderheader.orderdate
             , stg_salesorderheader.duedate
@@ -68,16 +77,17 @@ with
             , stg_salesorderheader.shipmethodid
             , dim_creditcards.creditcard_sk as creditcard_fk
             , stg_salesorderheader.creditcardid
-            , stg_salesorderheader.subtotal
-            , stg_salesorderheader.taxamt
-            , stg_salesorderheader.freight
-            , stg_salesorderheader.totaldue
+            , stg_salesorderdetail.salesorderdetailid
+            , stg_salesorderdetail.orderqty
+            , stg_salesorderdetail.productid
+            , stg_salesorderdetail.amountwithouttaxfreight
             , dim_salesreasons.salesreason_sk as salesreason_fk
         from stg_salesorderheader
         left join dim_creditcards on dim_creditcards.creditcardid = stg_salesorderheader.creditcardid
         left join dim_locations on dim_locations.addressid = stg_salesorderheader.shiptoaddressid
         left join dim_customers on dim_customers.customerid = stg_salesorderheader.customerid
         left join dim_salesreasons on dim_salesreasons.salesorderid = stg_salesorderheader.salesorderid
+        left join stg_salesorderdetail on stg_salesorderdetail.salesorderid = stg_salesorderheader.salesorderid
     )
 select *
 from sales_order_transformed
