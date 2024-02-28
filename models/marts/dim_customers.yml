@@ -17,8 +17,10 @@ models:
         description: If the customer is a person and not a store then the personid will not be null
       - name: storeid
         description: If the customer is a store and not a person then the storeid will not be null
-      - name: name
-        description: The name of customer. Could be a store or person
+      - name: person_name
+        description: The name of person
+      - name: store_name
+        description: The name of store
       - name: territoryid
         description: The customers' ID territory
         tests:
