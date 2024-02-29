@@ -34,7 +34,7 @@ models:
         description: Foreign key for customers
         tests: 
           - not_null
-      - name: customer
+      - name: customerid
         description: ID of customer
         tests:
           - not_null

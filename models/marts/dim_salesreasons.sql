@@ -14,14 +14,20 @@ with
             , salesreasonid
         from {{ ref('stg_salesorderheadersalesreason') }}
     )
+    , stg_salesorderheader as (
+        select salesorderid
+        from {{ ref('stg_salesorderheader') }}
+    )
     , transformed_all_stg as (
         select
             {{ dbt_utils.generate_surrogate_key(['stg_salesorderheadersalesreason.salesorderid', 'stg_salesorderheadersalesreason.salesreasonid']) }} as salesreason_sk
-            , stg_salesorderheadersalesreason.salesorderid
-            , string_agg(stg_salesreason.name, ", ") as name
-        from stg_salesorderheadersalesreason
+            , stg_salesorderheader.salesorderid
+            , string_agg(stg_salesreason.name, ", ") as reason_name
+        from stg_salesorderheader
+        left join stg_salesorderheadersalesreason on stg_salesorderheadersalesreason.salesorderid = stg_salesorderheader.salesorderid
         left join stg_salesreason on stg_salesreason.salesreasonid = stg_salesorderheadersalesreason.salesreasonid
         group by salesreason_sk, stg_salesorderheadersalesreason.salesorderid
     )
 select *
-from transformed_all_stg
+from stg_salesorderheadersalesreason
+where salesorderid = 43664
