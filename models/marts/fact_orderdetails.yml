@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: fact_orderdetails
+    columns:
+      - name: salesorderdetails_sk
+        description: Surrogate key for order detail
+        tests:
+          - not_null
+          - unique  
+      - name: salesorderid
+        description: ID for sale order
+        tests:
+          - not_null 
+      - name: salesorderdetailid
+        description: The ID for each sales order detail
+        tests:
+          - not_null
+      - name: productid
+        description: The ID for products
+        tests:
+          - not_null
+      - name: product_fk
+        description: The foreign key for products
+        tests:
+          - not_null
+      - name: orderqty
+        description: The quantity of products
+        tests:
+          - not_null
+      - name: unitprice
+        description: Price for each product
+        tests:
+          - not_null
+      - name: unitpricediscount
+        description: The discount for product
+        tests: 
+          - not_null

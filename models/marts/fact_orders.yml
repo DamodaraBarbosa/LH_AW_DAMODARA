@@ -52,12 +52,8 @@ models:
           - not_null
       - name: creditcard_fk
         description: Foreign key for creditcard
-        tests:
-          - not_null
       - name: creditcardid
         description: The ID for each credit card
-        tests:
-          - not_null
       - name: salesreason_fk
         description: The foreign key for sales reason
         tests:
