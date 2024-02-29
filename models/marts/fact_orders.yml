@@ -58,20 +58,12 @@ models:
         description: The ID for each credit card
         tests:
           - not_null
-      - name: salesorderdetailid
-        description: The ID for each sales order detail
+      - name: salesreason_fk
+        description: The foreign key for sales reason
         tests:
           - not_null
-      - name: orderqty
-        description: The amount of specific product ordered
-        tests:
-          - not_null
-      - name: productid
-        description: The ID for each product ordered
-        tests:
-          - not_null
-      - name: amountwithouttaxfreight
-        description: The amount of money for each salesorderdetailid without taxes and freight
+          - unique
+          
 
           
 

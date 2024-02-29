@@ -69,13 +69,34 @@ with
             , dim_creditcards.creditcard_sk as creditcard_fk
             , stg_salesorderheader.creditcardid
             , dim_salesreasons.salesreason_sk as salesreason_fk
-
         from stg_salesorderheader
         left join dim_creditcards on dim_creditcards.creditcardid = stg_salesorderheader.creditcardid
         left join dim_locations on dim_locations.addressid = stg_salesorderheader.shiptoaddressid
         left join dim_customers on dim_customers.customerid = stg_salesorderheader.customerid
         left join dim_salesreasons on dim_salesreasons.salesorderid = stg_salesorderheader.salesorderid
     )
-select *
-from sales_order_transformed
-where salesreason_fk is null
+    , deduplicated_order_transformed as (
+        select *
+            , row_number() over (partition by order_sk order by salesorderid) as row_num
+        from sales_order_transformed
+
+    )
+select 
+    order_sk
+    , salesorderid
+    , orderdate
+    , duedate
+    , shipdate
+    , status
+    , onlineorderflag
+    , customer_fk
+    , customerid
+    , territoryid
+    , locations_fk
+    , shiptoaddressid
+    , shipmethodid
+    , creditcard_fk
+    , creditcardid
+    , salesreason_fk
+from deduplicated_order_transformed
+where row_num = 1
