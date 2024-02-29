@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: fact_orders
+    columns:
+      - name: order_sk
+        description: Surrogate key for each order
+        tests:
+          - not_null
+          - unique  
+      - name: salesorderid
+        description: ID for sale order
+        tests:
+          - not_null 
+      - name: orderdate
+        description: The date the order was placed
+        tests:
+          - not_null
+      - name: duedate
+        description: Date the order is due to the customer
+        tests:
+          - not_null
+      - name: shipdate
+        description: The date the order was shipped to the customer
+        tests:
+          - not_null
+      - name: status
+        description: The status of the order
+        tests:
+          - not_null
+      - name: onlineorderflag
+        description: False if the order is placed by sales person. 1 if the order is placed online by customer
+      - name: customer_fk
+        description: Foreign key for customers
+        tests: 
+          - not_null
+      - name: customerid
+        description: ID of customer
+        tests:
+          - not_null
+      - name: territoryid
+        description: Territory in which the sale was made
+        tests:
+          - not_null
+      - name: locations_fk
+        description: Foreign key for locations
+        tests:
+          - not_null
+      - name: shiptoaddressid
+        description: Customer shipping address
+        tests:
+          - not_null
+      - name: creditcard_fk
+        description: Foreign key for creditcard
+        tests:
+          - not_null
+      - name: creditcardid
+        description: The ID for each credit card
+        tests:
+          - not_null
+      - name: salesorderdetailid
+        description: The ID for each sales order detail
+        tests:
+          - not_null
+      - name: orderqty
+        description: The amount of specific product ordered
+        tests:
+          - not_null
+      - name: productid
+        description: The ID for each product ordered
+        tests:
+          - not_null
+      - name: amountwithouttaxfreight
+        description: The amount of money for each salesorderdetailid without taxes and freight
+
+          
+
+          

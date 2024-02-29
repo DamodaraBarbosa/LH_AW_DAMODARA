@@ -33,10 +33,8 @@ with
             , stg_customers.customerid
             , stg_customers.personid
             , stg_customers.storeid
-            , case
-                when stg_customers.personid is null then stg_store.name
-                else stg_person.name
-            end as name
+            , stg_person.name as person_name
+            , stg_store.name as store_name
             , stg_customers.territoryid
             , stg_person.emailpromotion
         from stg_customers

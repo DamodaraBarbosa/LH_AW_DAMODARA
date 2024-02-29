@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_locations
+    columns:
+      - name: locations_sk
+        description: Surrogate key for location record
+        tests:
+          - not_null
+          - unique  
+      - name: businessentityid
+        description: ID for business entity
+        tests:
+          - not_null 
+      - name: country_name
+        description: The name of country
+      - name: province_name
+        description: The name of province
+      - name: city_name
+        description: The name of city
+      - name: Address
+        description: The address' information
