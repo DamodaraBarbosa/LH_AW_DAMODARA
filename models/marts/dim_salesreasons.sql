@@ -18,16 +18,20 @@ with
         select salesorderid
         from {{ ref('stg_salesorderheader') }}
     )
-    , transformed_all_stg as (
+    , transformed_reason as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheadersalesreason.salesorderid', 'stg_salesorderheadersalesreason.salesreasonid']) }} as salesreason_sk
-            , stg_salesorderheader.salesorderid
-            , string_agg(stg_salesreason.name, ", ") as reason_name
+            stg_salesorderheader.salesorderid
+            , coalesce(string_agg(stg_salesreason.name, ", "), "Not applied") as reason_name
         from stg_salesorderheader
         left join stg_salesorderheadersalesreason on stg_salesorderheadersalesreason.salesorderid = stg_salesorderheader.salesorderid
         left join stg_salesreason on stg_salesreason.salesreasonid = stg_salesorderheadersalesreason.salesreasonid
-        group by salesreason_sk, stg_salesorderheadersalesreason.salesorderid
+        group by stg_salesorderheader.salesorderid
+    )
+    , transformed_reason_with_sk as (
+        select
+            {{ dbt_utils.generate_surrogate_key(['salesorderid', 'reason_name']) }} as reason_sk
+            , *
+        from transformed_reason
     )
 select *
-from stg_salesorderheadersalesreason
-where salesorderid = 43664
+from transformed_reason_with_sk
