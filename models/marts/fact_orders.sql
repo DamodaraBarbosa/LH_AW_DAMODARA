@@ -68,6 +68,10 @@ with
             , stg_salesorderheader.shipmethodid
             , dim_creditcards.creditcard_sk as creditcard_fk
             , stg_salesorderheader.creditcardid
+            , stg_salesorderheader.subtotal
+            , stg_salesorderheader.taxamt
+            , stg_salesorderheader.freight
+            , stg_salesorderheader.totaldue
             , dim_salesreasons.salesreason_sk as salesreason_fk
         from stg_salesorderheader
         left join dim_creditcards on dim_creditcards.creditcardid = stg_salesorderheader.creditcardid
@@ -96,7 +100,10 @@ select
     , shiptoaddressid
     , shipmethodid
     , creditcard_fk
-    , creditcardid
+    , subtotal
+    , taxamt
+    , freight
+    , totaldue
     , salesreason_fk
 from deduplicated_order_transformed
 where row_num = 1
