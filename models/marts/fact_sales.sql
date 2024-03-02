@@ -19,7 +19,6 @@ with
             , customerid
             , territoryid
             , shiptoaddressid
-            , shipmethodid
             , creditcardid
             , subtotal
             , taxamt
@@ -47,13 +46,24 @@ with
     )
     , dim_salesreasons as (
         select
-            salesreason_sk
+            reason_sk
             , salesorderid
+            , reason_name
         from {{ ref('dim_salesreasons') }}
     )
-    , sales_order_transformed as (
+    , stg_salesorderdetail as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.salesorderid']) }} as order_sk
+          salesorderid
+          , salesorderdetailid
+          , orderqty
+          , productid
+          , unitprice
+          , unitpricediscount
+        from {{ ref('stg_salesorderdetail') }}
+    )
+    , transformed_sales as (
+        select
+            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.salesorderid', 'stg_salesorderdetail.salesorderdetailid']) }} as sales_sk
             , stg_salesorderheader.salesorderid
             , stg_salesorderheader.orderdate
             , stg_salesorderheader.duedate
@@ -65,45 +75,18 @@ with
             , stg_salesorderheader.territoryid
             , dim_locations.locations_sk as locations_fk
             , stg_salesorderheader.shiptoaddressid
-            , stg_salesorderheader.shipmethodid
             , dim_creditcards.creditcard_sk as creditcard_fk
             , stg_salesorderheader.creditcardid
-            , stg_salesorderheader.subtotal
-            , stg_salesorderheader.taxamt
-            , stg_salesorderheader.freight
-            , stg_salesorderheader.totaldue
-            , dim_salesreasons.salesreason_sk as salesreason_fk
+            , stg_salesorderdetail.salesorderdetailid
+            , stg_salesorderdetail.orderqty
+            , ((1 - stg_salesorderdetail.unitpricediscount) * stg_salesorderdetail.unitprice * stg_salesorderdetail.orderqty) as totaldue
+            , dim_salesreasons.reason_sk as reason_fk
         from stg_salesorderheader
-        left join dim_creditcards on dim_creditcards.creditcardid = stg_salesorderheader.creditcardid
-        left join dim_locations on dim_locations.addressid = stg_salesorderheader.shiptoaddressid
         left join dim_customers on dim_customers.customerid = stg_salesorderheader.customerid
+        left join dim_locations on dim_locations.addressid = stg_salesorderheader.shiptoaddressid
+        left join dim_creditcards on dim_creditcards.creditcardid = stg_salesorderheader.creditcardid
         left join dim_salesreasons on dim_salesreasons.salesorderid = stg_salesorderheader.salesorderid
+        left join stg_salesorderdetail on stg_salesorderdetail.salesorderid = stg_salesorderheader.salesorderid
     )
-    , deduplicated_order_transformed as (
-        select *
-            , row_number() over (partition by order_sk order by salesorderid) as row_num
-        from sales_order_transformed
-
-    )
-select 
-    order_sk
-    , salesorderid
-    , orderdate
-    , duedate
-    , shipdate
-    , status
-    , onlineorderflag
-    , customer_fk
-    , customerid
-    , territoryid
-    , locations_fk
-    , shiptoaddressid
-    , shipmethodid
-    , creditcard_fk
-    , subtotal
-    , taxamt
-    , freight
-    , totaldue
-    , salesreason_fk
-from deduplicated_order_transformed
-where row_num = 1
+select *
+from transformed_sales

@@ -1,9 +1,9 @@
 version: 2
 
 models:
-  - name: fact_orders
+  - name: fact_sales
     columns:
-      - name: order_sk
+      - name: sales_sk
         description: Surrogate key for each order
         tests:
           - not_null
@@ -54,12 +54,20 @@ models:
         description: Foreign key for creditcard
       - name: creditcardid
         description: The ID for each credit card
-      - name: salesreason_fk
-        description: The foreign key for sales reason
+      - name: salesorderdetailid
+        description: The ID for each sales order detail
         tests:
           - not_null
-          - unique
-          
+      - name: orderqty
+        description: Quantity of products ordered
+        tests:
+          - not_null
+      - name: totaldue
+        description: Order quantity times the unit price subtracted from the discount
+        tests:
+          - not_null
+      - name: reason_fk
+        description: The foreign key for reason details
 
           
 
