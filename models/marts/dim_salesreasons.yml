@@ -3,6 +3,11 @@ version: 2
 models:
   - name: dim_salesreasons
     columns: 
+      - name: skreason
+        description: The surrogate key for reason sales
+        tests:
+          - not_null
+          - unique
       - name: salesorderid
         description: ID for sales order
         tests:

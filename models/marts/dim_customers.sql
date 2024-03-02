@@ -29,7 +29,7 @@ with
     )
     , transformed_all_stg as (
         select
-            {{ dbt_utils.generate_surrogate_key(['customerid', 'personid', 'storeid']) }} as customer_sk
+            {{ dbt_utils.generate_surrogate_key(['customerid', 'personid', 'storeid']) }} as skcustomer
             , stg_customers.customerid
             , stg_customers.personid
             , stg_customers.storeid

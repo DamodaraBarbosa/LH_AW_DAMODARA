@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_products
     columns:
-      - name: product_sk
+      - name: skproduct
         description: Surrogate key for each product
         tests:
           - not_null

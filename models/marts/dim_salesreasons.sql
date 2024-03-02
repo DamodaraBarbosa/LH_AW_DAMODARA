@@ -29,7 +29,7 @@ with
     )
     , transformed_reason_with_sk as (
         select
-            {{ dbt_utils.generate_surrogate_key(['salesorderid', 'reason_name']) }} as reason_sk
+            {{ dbt_utils.generate_surrogate_key(['salesorderid', 'reason_name']) }} as skreason
             , *
         from transformed_reason
     )

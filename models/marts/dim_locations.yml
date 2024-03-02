@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_locations
     columns:
-      - name: locations_sk
+      - name: sklocation
         description: Surrogate key for location record
         tests:
           - not_null
