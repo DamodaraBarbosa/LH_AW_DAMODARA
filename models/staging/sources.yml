@@ -12,7 +12,6 @@ sources:
       - name: stateprovince
       - name: address
       - name: businessentityaddress
-      - name: businessentity
       - name: store
       - name: salesreason
       - name: salesorderheadersalesreason
