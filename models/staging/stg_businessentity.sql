@@ -1,7 +1,7 @@
 with
     businessentity as (
         select
-            businessentityid
+            cast(businessentityid as int) as businessentityid
         from {{ source('adventure_works', 'businessentity') }}
 
     )

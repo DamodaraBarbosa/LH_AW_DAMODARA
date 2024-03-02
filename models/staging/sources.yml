@@ -19,3 +19,4 @@ sources:
       - name: salesorderdetail
       - name: salesorderheader
       - name: person
+      - name: salesterritory

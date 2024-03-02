@@ -11,7 +11,7 @@ with
 
     , transformed_stg_creditcards as (
         select
-            {{ dbt_utils.generate_surrogate_key(['creditcardid', 'cardnumber']) }} as creditcard_sk
+            {{ dbt_utils.generate_surrogate_key(['creditcardid', 'cardnumber']) }} as skcreditcard
             , *
         from stg_creditcard
     )

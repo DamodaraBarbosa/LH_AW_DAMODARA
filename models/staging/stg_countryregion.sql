@@ -1,8 +1,8 @@
 with
     countryregion as (
         select
-            countryregioncode
-            , name
+            cast(countryregioncode as string) as countryregioncode
+            , cast(name as string) as name
         from {{ source('adventure_works', 'countryregion') }}
     )
 select *

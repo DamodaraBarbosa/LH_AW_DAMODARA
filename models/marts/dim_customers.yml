@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_customers
     columns:
-      - name: customer_sk
+      - name: skcustomer
         description: Surrogate key for each customer
         tests:
           - not_null

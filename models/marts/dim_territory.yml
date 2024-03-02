@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_territory
+    columns: 
+      - name: skterritory
+        description: The surrogate key for territory sales
+        tests:
+          - not_null
+          - unique
+      - name: territoryid
+        description: ID for each territory sales
+        tests:
+          - not_null
+          - unique 
+      - name: name
+        description: Territory's name
+        tests:
+          - not_null
+          - unique
+      - name: countryregioncode
+        description: The code for each country
+        tests:
+          - not_null
+          - unique
+      - name: macrogroup
+        description: The group that each country is part

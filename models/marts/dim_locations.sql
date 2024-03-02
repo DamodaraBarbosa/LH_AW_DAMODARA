@@ -33,7 +33,7 @@ with
     )
     , transformed_all_stg as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_businessentityaddress.businessentityid', 'stg_address.addressid']) }} as locations_sk
+            {{ dbt_utils.generate_surrogate_key(['stg_businessentityaddress.businessentityid', 'stg_address.addressid']) }} as sklocation
             , stg_businessentityaddress.businessentityid
             , stg_countryregion.name as country_name
             , stg_stateprovince.name as province_name

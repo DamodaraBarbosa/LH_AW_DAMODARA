@@ -3,7 +3,7 @@ version: 2
 models:
   - name: dim_creditcards
     columns:
-      - name: creditcard_sk
+      - name: skcreditcard
         description: Surrogate key for each credit card
         tests:
           - not_null
