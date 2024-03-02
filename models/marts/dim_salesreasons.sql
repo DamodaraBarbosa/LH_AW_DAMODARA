@@ -20,13 +20,12 @@ with
     )
     , transformed_reason as (
         select
-            {{ dbt_utils.generate_surrogate_key(['stg_salesorderheader.salesorderid', 'stg_salesreason.name']) }} as reason_sk
-            , stg_salesorderheader.salesorderid
+            stg_salesorderheader.salesorderid
             , string_agg(stg_salesreason.name, ", ") as reason_name
         from stg_salesorderheader
         left join stg_salesorderheadersalesreason on stg_salesorderheadersalesreason.salesorderid = stg_salesorderheader.salesorderid
         left join stg_salesreason on stg_salesreason.salesreasonid = stg_salesorderheadersalesreason.salesreasonid
-        group by stg_salesorderheader.salesorderid, reason_sk
+        group by stg_salesorderheader.salesorderid
     )
 select *
 from transformed_reason
