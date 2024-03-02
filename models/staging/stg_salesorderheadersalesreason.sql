@@ -1,8 +1,8 @@
 with
     salesorderheadersalesreason as (
         select
-            salesorderid
-            , salesreasonid
+            cast(salesorderid as int) as salesorderid
+            , cast(salesreasonid as int) as salesreasonid
         from {{ source('adventure_works', 'salesorderheadersalesreason') }}
     )
 select *

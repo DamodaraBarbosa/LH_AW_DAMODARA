@@ -1,8 +1,8 @@
 with
     store as (
         select
-            businessentityid
-            , name
+            cast(businessentityid as int) as businessentityid
+            , cast(name as string) as name
         from {{ source('adventure_works', 'store') }}
     )
 select *

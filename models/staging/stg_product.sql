@@ -2,10 +2,10 @@ with
     product as (
         select 
             cast(productid as int) as productid
-            , name
-            , color
+            , cast(name as string) as name
+            , cast(color as string) as color
             , cast(listprice as decimal) as listprice
-            , sellstartdate
+            , cast(sellstartdate as datetime) as sellstartdate 
         from {{ source('adventure_works', 'product') }}
     )
 select *
