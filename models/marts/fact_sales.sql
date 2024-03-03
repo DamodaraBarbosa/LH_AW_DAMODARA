@@ -15,7 +15,10 @@ with
                 when status = 5 then "Shipped"
                 when status = 6 then "Cancelled"
             end as status
-            , onlineorderflag
+            , case
+                when onlineorderflag = True then "Online"
+                else "Physical"
+            end as onlineorderflag
             , customerid
             , territoryid
             , shiptoaddressid
