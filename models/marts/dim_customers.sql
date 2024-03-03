@@ -22,7 +22,7 @@ with
                 when emailpromotion = 0 then "No promotional e-mail"
                 when emailpromotion = 1 then "Promotinal e-mail from Adventure Works"
                 when emailpromotion = 2 then "Promotinal e-mail from Adventure Works and partners"
-                else "Not applied"
+                when emailpromotion is null then "Not applied"
             end as emailpromotion
         from {{ ref('stg_person') }}
     )
