@@ -13,7 +13,7 @@ models:
         tests:
           - unique 
           - not_null 
-      - name: name
+      - name: name_product
         description: The name of product
         tests:
           - not_null
