@@ -21,6 +21,8 @@ models:
         description: The name of person
       - name: store_name
         description: The name of store
+      - name: salespersonid
+        description: The sales person ID
       - name: territoryid
         description: The customers' ID territory
         tests:
