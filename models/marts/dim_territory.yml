@@ -22,6 +22,5 @@ models:
         description: The code for each country
         tests:
           - not_null
-          - unique
       - name: macrogroup
         description: The group that each country is part

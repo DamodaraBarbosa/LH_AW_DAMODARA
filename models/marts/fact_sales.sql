@@ -39,6 +39,7 @@ with
         select
             skcustomer
             , customerid
+            , salespersonid
         from {{ ref('dim_customers') }}
     )
     , dim_locations as (
@@ -81,6 +82,8 @@ with
             , stg_salesorderheader.onlineorderflag
             , dim_customers.skcustomer as fkcustomer
             , stg_salesorderheader.customerid
+            -- If the order was online the salespersonid will be 0
+            , coalesce(dim_customers.salespersonid, 0) as salespersonid 
             , stg_salesorderheader.territoryid
             , dim_locations.sklocation as fklocation
             , stg_salesorderheader.shiptoaddressid

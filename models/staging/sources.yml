@@ -19,3 +19,5 @@ sources:
       - name: salesorderheader
       - name: person
       - name: salesterritory
+      - name: productcategory
+      - name: productsubcategory

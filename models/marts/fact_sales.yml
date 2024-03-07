@@ -38,6 +38,8 @@ models:
         description: ID of customer
         tests:
           - not_null
+      - name: salespersonid
+        description: The ID for salesperson 
       - name: territoryid
         description: Territory in which the sale was made
         tests:

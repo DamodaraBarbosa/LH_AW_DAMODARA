@@ -28,8 +28,9 @@ with
     )
     , stg_store as (
         select 
-        businessentityid
+        stg_store.businessentityid
         , name
+        , salespersonid
         from {{ ref('stg_store') }}
     )
     , transformed_all_stg as (
@@ -38,7 +39,8 @@ with
             , stg_customers.customerid
             , stg_customers.personid
             , stg_customers.storeid
-            , stg_person.name as person_name
+            , stg_person.name as name
+            , stg_store.salespersonid
             , stg_store.name as store_name
             , stg_customers.territoryid
             , stg_person.emailpromotion
