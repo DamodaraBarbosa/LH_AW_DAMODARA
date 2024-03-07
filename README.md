@@ -1,5 +1,6 @@
 Lighthouse | Jornada Técnica - Dados 2024
-Certificação em Dados by Indicium
+
+Projeto de Dados by Indicium
 
 🚀 Objetivo
 
