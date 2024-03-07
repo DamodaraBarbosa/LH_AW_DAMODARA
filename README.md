@@ -35,7 +35,7 @@ Para facilitar o entendimento dos dados, a Adventure Works disponibilizou um dic
 
   ![image](https://github.com/DamodaraBarbosa/LH_AW_DAMODARA/assets/107199898/0448954c-1a5f-413a-95e1-5eef0dbfd2aa)
 
-* Após a criação das *stagins*, estas foram utilizadas para definição das fatos e dimensões:
+* Após a criação das *stagings*, estas foram utilizadas para definição das fatos e dimensões:
 
  ![image](https://github.com/DamodaraBarbosa/LH_AW_DAMODARA/assets/107199898/2b13ca26-e6b2-4185-93d7-10e0362f06c8)
 
