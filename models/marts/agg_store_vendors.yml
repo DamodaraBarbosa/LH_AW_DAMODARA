@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: agg_store_vendors
+    columns:
+      - name: store_name
+        description: The name of stores
+      - name: vendorname
+        description: The name of sales person. If the order was online, the name is online
+      - name: totalqty
+        description: The total quantity of products per vendor and store
+      - name: Total due by record
+        description: Toal due 
